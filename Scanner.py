@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import mapper
+#------------------------------------------------------------------------------
+
 image=cv2.imread("input_img.jpg")   #read in the image
 image=cv2.resize(image,(1300,800)) #resizing because opencv does not work well with bigger images
 orig=image.copy()
@@ -13,7 +15,6 @@ cv2.imshow("Blur",blurred)
 
 edged=cv2.Canny(blurred,30,50)  #30 MinThreshold and 50 is the MaxThreshold
 cv2.imshow("Canny",edged)
-
 
 contours,hierarchy=cv2.findContours(edged,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)  #retrieve the contours as a list, with simple apprximation model
 contours=sorted(contours,key=cv2.contourArea,reverse=True)
